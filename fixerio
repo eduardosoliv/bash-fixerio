@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# style guide: https://google.github.io/styleguide/shell.xml
+
+function latest {
+    local base="EUR"
+    if [ ! -z ${1+x} ]; then base=$1; fi
+    local content=$(curl -L -s http://api.fixer.io/latest?base=$base)
+    echo $content
+}
+
+json=$(latest)
+echo $json | jq .
