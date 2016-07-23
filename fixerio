@@ -1,31 +1,47 @@
 #!/bin/bash
 
+source fixerio_funcs.sh
+
 # style guide: https://google.github.io/styleguide/shell.xml
 
-function get_url {
-  local url="${1}"
+# fixerio latest|historical
 
-  if [ -z ${res+x} ]; then
-    res=$(curl -s $url)
-  fi
-
-  echo $res
+usage() {
+  echo "Usage: $0 [-a latest|historical] [-b currency] [-s symbols] [-c yes|no]" 1>&2
+  exit 1
 }
 
-function get_uri {
-  local res=$(get_url http://api.fixer.io/$1)
-  echo $res
-}
+base="EUR"
+symbols=""
+color="yes"
+while getopts "a:b:s:c:" o; do
+    case "${o}" in
+        a)
+          action=${OPTARG}
+          [[ "$action" = "latest" || "$action" = "historical" ]] || usage
+          ;;
+        b)
+          base=${OPTARG}
+          ;;
+        s)
+          symbols=${OPTARG}
+          ;;
+        c)
+          color=${OPTARG}
+          [[ "$color" = "yes" || "$color" = "no" ]] || usage
+          ;;
+        *)
+          usage
+          ;;
+    esac
+done
+shift $((OPTIND-1))
 
-function latest {
-  local base="EUR"
-  if [ ! -z ${1+x} ]; then
-    base=$1
-  fi
-  local content=$(get_uri latest?base=$base)
-  echo $content
-}
 
-#res="sas"
-json=$(latest)
-echo $json #| jq .
+json=$(latest "$base" "$symbols")
+
+if [[ "$color" = "yes" ]] ; then
+  echo $json | jq .
+else
+  echo $json | jq -M .
+fi
