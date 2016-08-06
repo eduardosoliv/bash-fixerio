@@ -7,14 +7,14 @@ source fixerio_funcs.sh
 # fixerio latest|historical
 
 usage() {
-  echo "Usage: $0 [-a latest|historical] [-b currency] [-s symbols] [-c yes|no]" 1>&2
+  echo "Usage: $0 [-a latest|historical] [-b currency] [-s symbols] [-f prettify-colorful|prettify|no]" 1>&2
   exit 1
 }
 
 base="EUR"
 symbols=""
-color="yes"
-while getopts "a:b:s:c:" o; do
+color="no"
+while getopts "a:b:s:f:" o; do
     case "${o}" in
         a)
           action=${OPTARG}
@@ -26,9 +26,9 @@ while getopts "a:b:s:c:" o; do
         s)
           symbols=${OPTARG}
           ;;
-        c)
+        f)
           color=${OPTARG}
-          [[ "$color" = "yes" || "$color" = "no" ]] || usage
+          [[ "$color" = "prettify-colorful" || "$color" = "prettify" || "$color" = "no" ]] || usage
           ;;
         *)
           usage
@@ -40,8 +40,10 @@ shift $((OPTIND-1))
 
 json=$(latest "$base" "$symbols")
 
-if [[ "$color" = "yes" ]] ; then
+if [[ "$color" = "prettify-colorful" ]] ; then
   echo $json | jq .
-else
+elif [[ "$color" = "prettify" ]] ; then
   echo $json | jq -M .
+else
+  echo $json
 fi
