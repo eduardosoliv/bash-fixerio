@@ -3,7 +3,15 @@
 source fixerio_funcs.sh
 
 usage() {
-  echo "Usage: $0 [-d yyyy-mm-dd] [-b currency] [-s symbols] [-f prettify-colorful|prettify|no]" 1>&2
+  echo "Fixe.io for cli (http://fixer.io/)"
+  echo "Usage: $0 [-d <yyyy-mm-dd>] [-b <base currency>] [-s <symbols>] [-f <prettify|prettify-colorful|no>]" 1>&2
+  echo "-d <yyyy-mm-dd> If no date is specified the latest foreign exchange rates will be fetched" 1>&2
+  echo "-b <base currency> Rates are quoted against the EUR by default" 1>&2
+  echo "-s <symbols> Specific exchange rates by setting the symbols, eg: -s USD,GBP" 1>&2
+  echo "-f <prettify|prettify-colorful|no> Default is no" 1>&2
+  echo "  prettify: will output the JSON formatted" 1>&2
+  echo "  prettify-colorful: will display color if the output is terminal" 1>&2
+  echo "  no: will output the json without any formatting" 1>&2
   exit 1
 }
 
