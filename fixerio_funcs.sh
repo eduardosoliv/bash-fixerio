@@ -13,3 +13,9 @@ function latest {
   content=$(curl -s "$url")
   echo $content
 }
+
+function historical {
+  url="http://api.fixer.io/"$1""$(get_query_params $2 $3)
+  content=$(curl -s "$url")
+  echo $content
+}
