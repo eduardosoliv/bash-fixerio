@@ -1,5 +1,9 @@
-Fixer.io: Use fixer.io on the command line
+Fixer.io: Command line currency conversion
 ========================================
+
+Command line currency conversion with `Fixer.io <http://fixer.io/>`_
+
+`Fixer.io <http://fixer.io/>`_ is a free JSON API for current and historical foreign exchange rates published by the European Central Bank.
 
 Installation
 ------------
@@ -33,8 +37,6 @@ Get the latest foreign exchange reference rates.
     {"base":"EUR","date":"2016-08-05","rates":{"AUD":1.4567,"BGN":1.9558,"BRL":3.5501,"CAD":1.4529,"CHF":1.0852,"CNY":7.411,"CZK":27.022,"DKK":7.4373,"GBP":0.8481,"HKD":8.6521,"HRK":7.4843,"HUF":310.62,"IDR":14617.71,"ILS":4.2633,"INR":74.4919,"JPY":112.73,"KRW":1237.73,"MXN":21.0282,"MYR":4.4927,"NOK":9.4022,"NZD":1.5473,"PHP":52.3,"PLN":4.2841,"RON":4.4622,"RUB":72.7967,"SEK":9.5043,"SGD":1.4953,"THB":38.848,"TRY":3.3471,"USD":1.1156,"ZAR":15.2536}}
 
 Get the latest foreign exchange reference rates with formatted output
-
-Get the latest foreign exchange rates with USD as base currency and only for GBP and EUR.
 
 .. code-block:: bash
 
@@ -76,6 +78,8 @@ Get the latest foreign exchange rates with USD as base currency and only for GBP
         "ZAR": 15.2536
       }
     }
+
+Get the latest foreign exchange rates with USD as base currency and only for GBP and EUR.
 
 .. code-block:: bash
 
