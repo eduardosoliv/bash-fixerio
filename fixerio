@@ -2,10 +2,6 @@
 
 source fixerio_funcs.sh
 
-# style guide: https://google.github.io/styleguide/shell.xml
-
-# fixerio latest|historical
-
 usage() {
   echo "Usage: $0 [-d yyyy-mm-dd] [-b currency] [-s symbols] [-f prettify-colorful|prettify|no]" 1>&2
   exit 1
